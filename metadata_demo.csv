@@ -1,0 +1,5 @@
+sample_id,condition,replicate,target,mark_type,genome,bam_path,control_bam
+K27me3_ctrl_rep1,ctrl,1,H3K27me3,broad,hg38,data/K27me3_ctrl_rep1.bam,
+K27me3_ctrl_rep2,ctrl,2,H3K27me3,broad,hg38,data/K27me3_ctrl_rep2.bam,
+K27me3_treat_rep1,treat,1,H3K27me3,broad,hg38,data/K27me3_treat_rep1.bam,
+K27me3_treat_rep2,treat,2,H3K27me3,broad,hg38,data/K27me3_treat_rep2.bam,

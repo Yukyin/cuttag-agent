@@ -1,0 +1,22 @@
+[
+  {
+    "id": "comment_001",
+    "title": "Low peak count after alignment",
+    "text": "If peak counts are too low, first verify reference genome build, BAM indexing, replicate completeness, and whether broad-mark settings are more appropriate."
+  },
+  {
+    "id": "comment_002",
+    "title": "Broad histone mark setting",
+    "text": "Broad histone marks such as H3K27me3 often benefit from broad peak-calling settings instead of narrow peak-calling settings."
+  },
+  {
+    "id": "comment_003",
+    "title": "Genome build mismatch",
+    "text": "A mismatch between metadata genome build and actual alignment reference can lead to confusing downstream results and interpretation problems."
+  },
+  {
+    "id": "comment_004",
+    "title": "Noisy result interpretation",
+    "text": "If the result looks noisy, consider stricter thresholds, checking control availability, and re-evaluating whether the selected target behaves as a broad or sharp mark."
+  }
+]
