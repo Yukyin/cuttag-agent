@@ -320,7 +320,7 @@ Expected:
 - Pipeline state: **Mark type: broad**, **Caller: SEACR_relaxed**
 - All sample commands regenerated
 
----
+
 
 ### Test 5: QC debugging — too few peaks
 
