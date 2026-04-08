@@ -422,12 +422,35 @@ To extend the knowledge base, add entries to the `DEFAULT_KB` list in
 
 ## Limitations
 
-- **Peak calling only:** This prototype automates the peak-calling step. Alignment,
+- Peak calling only: This prototype automates the peak-calling step. Alignment,
   QC metrics computation, bigwig generation, and differential analysis are not yet
   included but follow the same design pattern.
-- **No real execution:** The agent generates shell commands but does not run them.
+- No real execution: The agent generates shell commands but does not run them.
   Copy commands from the UI and submit them to your HPC scheduler.
-- **Local model quality:** Response quality depends on the model loaded in Ollama.
+- Local model quality: Response quality depends on the model loaded in Ollama.
   Larger models produce more accurate and nuanced CUT&Tag-specific advice.
-- **KB coverage:** The knowledge base covers common scenarios. Highly specialised
+- KB coverage: The knowledge base covers common scenarios. Highly specialised
   experimental designs may require manual KB extension.
+
+
+
+## Research and Citation
+
+If you use this project in a paper, report, thesis, or study, please cite this repository:
+
+```bibtex
+@misc{Chen2026CUTTagAgent,
+  author = {Yuyan Chen},
+  title  = {CUT\&Tag Agent: An AI-Powered Epigenomic Pipeline Assistant for Interactive Peak-Calling Workflow Generation and Result Interpretation},
+  year   = {2026},
+  url    = {https://github.com/Yukyin/cuttag-agent}
+}
+```
+
+## License
+
+Noncommercial use is governed by `LICENSE` (PolyForm Noncommercial 1.0.0).  
+Commercial use requires a separate agreement — see `COMMERCIAL_LICENSE.md`.
+
+📨 Commercial inquiries: yolandachen0313@gmail.com
+
