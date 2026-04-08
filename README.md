@@ -20,7 +20,7 @@ standard data processing tutorial requires researchers to:
 - Re-run analysis whenever parameters need adjustment
 
 This project addresses these barriers by wrapping the peak-calling step in an
-**agentic workflow**:
+agentic workflow:
 
 1. Users upload a simple CSV describing their samples — no code required
 2. The agent reads the metadata and automatically generates a customised pipeline
@@ -39,12 +39,12 @@ agent context via RAG retrieval.
 
 | Component | Technology | Role |
 |---|---|---|
-| **LLM backbone** | Local Ollama model (OpenAI-compatible API) | Reasoning, interpretation, decision-making — fully offline |
-| **Agentic output** | Structured JSON output (replaces Function Calling) | LLM autonomously decides whether and how to modify the pipeline |
-| **RAG** | Keyword-overlap retrieval over 12 KB entries | Grounds answers in CUT&Tag protocol knowledge |
-| **Memory** | Sliding-window conversation history (last 10 turns) | Enables cross-turn debugging and follow-up questions |
-| **Pipeline state** | PipelinePlan dataclass serialised to JSON | Single source of truth; every agent action mutates it |
-| **UI** | Gradio Blocks | No-code web interface accessible from any browser |
+| LLM backbone | Local Ollama model (OpenAI-compatible API) | Reasoning, interpretation, decision-making — fully offline |
+| Agentic output | Structured JSON output (replaces Function Calling) | LLM autonomously decides whether and how to modify the pipeline |
+| RAG | Keyword-overlap retrieval over 12 KB entries | Grounds answers in CUT&Tag protocol knowledge |
+| Memory | Sliding-window conversation history (last 10 turns) | Enables cross-turn debugging and follow-up questions |
+| Pipeline state | PipelinePlan dataclass serialised to JSON | Single source of truth; every agent action mutates it |
+| UI | Gradio Blocks | No-code web interface accessible from any browser |
 
 ### Agentic Loop
 
@@ -86,7 +86,7 @@ UI updates: chat reply + pipeline state panel + regenerated shell commands
 
 ## Focus Step: Peak Calling
 
-This prototype focuses on the **peak calling** step of the CUT&Tag workflow, which is
+This prototype focuses on the peak calling step of the CUT&Tag workflow, which is
 the most consequential and error-prone step:
 
 - Choosing narrow vs broad mode incorrectly produces near-zero peaks
@@ -204,7 +204,7 @@ K27me3_treat_rep1,treat,1,H3K27me3,broad,hg38,data/K27me3_treat_rep1.bam,
 K27me3_treat_rep2,treat,2,H3K27me3,broad,hg38,data/K27me3_treat_rep2.bam,
 ```
 
-**Mark type auto-inference:** If `mark_type` is set to `auto`, the agent infers
+Mark type auto-inference: If `mark_type` is set to `auto`, the agent infers
 broad or sharp from the target name:
 
 - Broad marks: H3K27me3, H3K36me3, H3K9me3, H3K9me2
@@ -218,14 +218,14 @@ broad or sharp from the target name:
 
 For each sample, the agent produces a ready-to-run shell command:
 
-**MACS2 narrow** — sharp marks with or without control:
+MACS2 narrow — sharp marks with or without control:
 ```bash
 mkdir -p results/SAMPLE/peaks && \
   macs2 callpeak -t sample.bam -c control.bam \
   -f BAMPE -g hs -n SAMPLE --outdir results/SAMPLE/peaks -q 0.01
 ```
 
-**MACS2 broad** — broad marks with control:
+MACS2 broad — broad marks with control:
 ```bash
 mkdir -p results/SAMPLE/peaks && \
   macs2 callpeak -t sample.bam -c control.bam \
@@ -233,7 +233,7 @@ mkdir -p results/SAMPLE/peaks && \
   --broad --broad-cutoff 0.1
 ```
 
-**SEACR relaxed** — broad marks without control:
+SEACR relaxed — broad marks without control:
 ```bash
 mkdir -p results/SAMPLE/peaks && \
   bedtools genomecov -bg -ibam sample.bam > \
@@ -253,7 +253,7 @@ mkdir -p results/SAMPLE/peaks && \
 
 ### Pipeline State JSON
 
-The full pipeline state is available under the **Pipeline JSON** accordion in the
+The full pipeline state is available under the Pipeline JSON accordion in the
 Chat tab. It contains all sample metadata, generated commands, agent action log,
 and QC checklist, and updates live whenever the agent modifies the pipeline.
 
@@ -263,14 +263,14 @@ and QC checklist, and updates live whenever the agent modifies the pipeline.
 
 ### Test 1: Setup and pipeline generation
 
-1. Enter your model name in the **Model name** field
+1. Enter your model name in the Model name field
    (run `ollama list` to confirm the exact name including tag)
 2. Leave Ollama URL as `http://localhost:11434`
-3. Click **Test Connection**
+3. Click Test Connection
    - Pass: `Connected successfully. Model <name> is available.`
    - Fail: confirm `ollama serve` is running in another terminal
 4. Upload `metadata_demo.csv`
-5. Click **Generate Pipeline**
+5. Click Generate Pipeline
 
 Expected result on the right panel:
 - Pipeline Overview table: H3K27me3, broad, hg38, SEACR_relaxed, 4 samples
@@ -282,7 +282,7 @@ Expected result on the right panel:
 
 ### Test 2: Conceptual question — no pipeline change expected
 
-Switch to **Chat with Agent** tab. Send:
+Switch to Chat with Agent tab. Send:
 
 ```
 Why did you choose SEACR_relaxed instead of MACS2 for H3K27me3?
@@ -304,7 +304,7 @@ Please switch the reference genome to hg19.
 
 Expected:
 - Agent confirms the change
-- Pipeline state: **Genome: hg19**
+- Pipeline state: Genome: hg19
 - Agent Log: `[Agent] Genome changed to hg19: ...`
 - Updated commands accordion shows all 4 commands regenerated
 
@@ -317,7 +317,7 @@ I want to use broad peak calling mode for H3K27me3. Please update the pipeline.
 ```
 
 Expected:
-- Pipeline state: **Mark type: broad**, **Caller: SEACR_relaxed**
+- Pipeline state: Mark type: broad, Caller: SEACR_relaxed
 - All sample commands regenerated
 
 
@@ -372,7 +372,7 @@ Expected:
 
 ### Test 8: Agent Design tab
 
-Click the **Agent Design** tab.
+Click the Agent Design tab.
 
 Expected: Architecture diagram in ASCII art, component summary table, explanation of
 structured JSON output vs function calling, and a table of example interactions.
